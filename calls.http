@@ -19,5 +19,8 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:5000/adminpanel
-Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6InRlc3QiLCJpYXQiOjE2MTc1ODQwMzZ9.UDqtZ1xuTjlND0LGJilrx0fTk5qfmj9m-jNCBd4cvek
+GET http://localhost:5000/admin/adminpanel
+Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjE3NTg1NTg5fQ.OoXeFQY1TudnHiu6EbVfz-rlQdLcEE59u7Kr5EDoqOY
+
+
+

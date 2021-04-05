@@ -20,6 +20,17 @@ users.set("admin", {
   role: "admin",
 });
 
+app.use("/admin", (req, res, next) => {
+  console.log(req.headers.bearer);
+  try {
+    const payload = jwt.verify(req.headers.bearer, jwtKey);
+    console.log(payload);
+    next();
+  } catch (err) {
+    res.status(400).send("bad token");
+  }
+});
+
 app.get("/", (req, res) => {
   console.log("hello world req");
   res.send("Hello World!");
@@ -47,7 +58,10 @@ app.post("/login", (req, res) => {
       bcrypt.compareSync(req.body.password, users.get(req.body.username).hash)
     ) {
       const token = jwt.sign(
-        { username: req.body.username, role: "test" },
+        {
+          username: req.body.username,
+          role: users.get(req.body.username).role,
+        },
         jwtKey,
         {
           algorithm: "HS256",
@@ -62,13 +76,8 @@ app.post("/login", (req, res) => {
   }
 });
 
-app.get("/adminpanel", (req, res) => {
-  try {
-    const payload = jwt.verify(req.headers.bearer, jwtKey);
-    res.send(payload);
-  } catch (err) {
-    res.status(400).send("bad token");
-  }
+app.get("/admin/adminpanel", (req, res) => {
+  res.send("hello admin");
 });
 
 app.listen(port, () => {
