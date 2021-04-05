@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const e = require("express");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 5000;
@@ -10,8 +10,6 @@ app.use(cors());
 app.use(express.json());
 
 const users = new Map();
-
-const jwt = require("jsonwebtoken");
 
 const jwtKey = "my_secret_key";
 
@@ -34,12 +32,10 @@ app.use("/admin", (req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  console.log("hello world req");
   res.send("Hello World!");
 });
 
 app.post("/register", (req, res) => {
-  console.log(req.body);
   if (users.has(req.body.username)) {
     res.status(400).send("username already in use");
   } else {
@@ -48,13 +44,11 @@ app.post("/register", (req, res) => {
       hash: hash,
       role: "user",
     });
-    console.log(users);
     res.send(hash);
   }
 });
 
 app.post("/login", (req, res) => {
-  console.log(req.body);
   if (users.has(req.body.username)) {
     if (
       bcrypt.compareSync(req.body.password, users.get(req.body.username).hash)
