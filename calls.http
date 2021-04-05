@@ -28,7 +28,7 @@ content-type: application/json
 
 {
     "username": "karim",
-    "password": "felix"
+    "password": "test"
 }
 
 ###
@@ -37,7 +37,7 @@ content-type: application/json
 
 {
     "username": "karim",
-    "password": "felix"
+    "password": "test"
 }
 
 ###
