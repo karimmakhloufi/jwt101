@@ -10,6 +10,11 @@ app.use(cors());
 app.use(express.json());
 
 const users = new Map();
+
+const jwt = require("jsonwebtoken");
+
+const jwtKey = "my_secret_key";
+
 users.set("admin", {
   hash: bcrypt.hashSync("thisisthepass", 10),
   role: "admin",
@@ -41,12 +46,28 @@ app.post("/login", (req, res) => {
     if (
       bcrypt.compareSync(req.body.password, users.get(req.body.username).hash)
     ) {
-      res.send("oui");
+      const token = jwt.sign(
+        { username: req.body.username, role: "test" },
+        jwtKey,
+        {
+          algorithm: "HS256",
+        }
+      );
+      res.send({ jwt: token });
     } else {
       res.status(400).send("login error");
     }
   } else {
     res.status(400).send("login error");
+  }
+});
+
+app.get("/adminpanel", (req, res) => {
+  try {
+    const payload = jwt.verify(req.headers.bearer, jwtKey);
+    res.send(payload);
+  } catch (err) {
+    res.status(400).send("bad token");
   }
 });
 

@@ -17,3 +17,7 @@ content-type: application/json
     "username": "admin",
     "password": "thisisthepassword"
 }
+
+###
+GET http://localhost:5000/adminpanel
+Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6InRlc3QiLCJpYXQiOjE2MTc1ODQwMzZ9.UDqtZ1xuTjlND0LGJilrx0fTk5qfmj9m-jNCBd4cvek
