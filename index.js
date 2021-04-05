@@ -21,11 +21,13 @@ users.set("admin", {
 });
 
 app.use("/admin", (req, res, next) => {
-  console.log(req.headers.bearer);
   try {
     const payload = jwt.verify(req.headers.bearer, jwtKey);
-    console.log(payload);
-    next();
+    if (payload.role === "admin") {
+      next();
+    } else {
+      throw Error("catch this please");
+    }
   } catch (err) {
     res.status(400).send("bad token");
   }

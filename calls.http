@@ -22,5 +22,26 @@ content-type: application/json
 GET http://localhost:5000/admin/adminpanel
 Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjE3NTg1NTg5fQ.OoXeFQY1TudnHiu6EbVfz-rlQdLcEE59u7Kr5EDoqOY
 
+###
+POST http://localhost:5000/register
+content-type: application/json
+
+{
+    "username": "karim",
+    "password": "felix"
+}
+
+###
+POST http://localhost:5000/login
+content-type: application/json
+
+{
+    "username": "karim",
+    "password": "felix"
+}
+
+###
+GET http://localhost:5000/admin/adminpanel
+Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImthcmltIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MTc1ODU3ODJ9.eBdSViOw9flumw8YmZ4i5MhTgT41jtn4CWQSW3UsRGM
 
 
